@@ -1,0 +1,7 @@
+div.thumbnails div {
+    border: none;
+}
+
+img.thumbnail {
+    border: 1px solid grey;
+}

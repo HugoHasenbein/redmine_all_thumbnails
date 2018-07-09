@@ -1,0 +1,31 @@
+<fieldset class="box tabular settings"><legend><%= l(:label_configure_icon_set_style) %></legend>
+  <p>
+	<label><%= l(:label_choose_icon_set_style) %></label>
+	<%= radio_button_tag 'settings[use_icon_set]', tab[:name], Setting['plugin_redmine_all_thumbnails']['use_icon_set'] == tab[:name] %>
+  </p>
+  <p>
+	<%= l(:label_scroll_down_to_apply) %>
+  </p>
+  <p class="contextual">
+    <%= l(:label_icons_from) %>
+  </p>
+</fieldset>
+
+<div class="thumbnails">
+  <%- 
+	tab[:icon_set].each do |icon|
+	 
+	   src = File.join("/", "plugin_assets", "redmine_all_thumbnails", "images", "icons", tab[:dir], "#{icon}.svg")
+	   thumbnail_size = Setting.thumbnails_size.to_i 
+  %>
+
+	<div>
+	  <%= image_tag src, 
+					{ :class => "thumbnail",
+					  :srcset => "#{src}?size=#{thumbnail_size * 2} 2x",
+					  :style => "max-width: #{thumbnail_size}px; max-height: #{thumbnail_size}px; height: #{thumbnail_size}px;"
+					} %><br />
+	  <%= icon.upcase %>
+	</div>
+  <%- end %>
+</div>

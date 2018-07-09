@@ -1,0 +1,17 @@
+<%- 
+icon_set_1 = ::RedmineAllThumbnails::Patches::AttachmentsControllerPatch::InstanceMethods::ICONS_SQUARE_O
+icon_set_2 = ::RedmineAllThumbnails::Patches::AttachmentsControllerPatch::InstanceMethods::ICONS_VIVID
+icon_set_3 = ::RedmineAllThumbnails::Patches::AttachmentsControllerPatch::InstanceMethods::ICONS_CLASSIC
+
+tabs = [
+  {:label => :icon_set_1, :name => "Icons-Square-O", :partial => "settings/redmine_all_thumbnails/icon_set", :icon_set => icon_set_1, :dir => "square-o" },
+  {:label => :icon_set_2, :name => "Icons-Vivid",    :partial => "settings/redmine_all_thumbnails/icon_set", :icon_set => icon_set_2, :dir => "vivid"    },
+  {:label => :icon_set_3, :name => "Icons-Classic",  :partial => "settings/redmine_all_thumbnails/icon_set", :icon_set => icon_set_3, :dir => "classic"  }
+]
+%>
+
+<fieldset class="box tabular white"><legend><%= l(:label_configure_icon_set_style)%></legend>
+
+<%= render_tabs(tabs, settings['use_icon_set']) %>
+
+</fieldset>
