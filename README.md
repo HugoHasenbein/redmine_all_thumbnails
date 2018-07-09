@@ -2,7 +2,7 @@
 
 Plugin for Redmine. Show everey file as either thumnailable image or as a file icon
 
-![GIF that represents a quick overview](/doc/Overview.gif)
+![PNG that represents a quick overview](/doc/Overview.png)
 
 ### Use case(s)
 
