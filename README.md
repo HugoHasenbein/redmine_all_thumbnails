@@ -14,15 +14,19 @@ Plugin for Redmine. Show every issue attachment as either thumnailable image or 
 
 `git clone https://github.com/HugoHasenbein/redmine_all_attachments.git`
 
-2. restart server f.i.  `sudo /etc/init.s/apache2 restart`
+2. restart server f.i.  
+
+`sudo /etc/init.s/apache2 restart`
 
 ### Uninstall
 
-2. go to plugins folder
+1. go to plugins folder
 
 `rm -r redmine_all_attachments.git`
 
-3. restart server f.i.  `sudo /etc/init.s/apache2 restart`
+2. restart server f.i. 
+
+`sudo /etc/init.s/apache2 restart`
 
 ### Use
 
