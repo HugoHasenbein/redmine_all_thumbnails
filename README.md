@@ -6,7 +6,7 @@ Plugin for Redmine. Show every issue attachment as either thumnailable image or 
 
 ### Use case(s)
 
-* View issues similar to graphical file browser like Explorer, Finder, KDE, etc
+* View issue attachments similar to files in a graphical file browser like Explorer, Finder, KDE, etc
 
 ### Install
 
