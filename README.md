@@ -1,12 +1,12 @@
 # redmine_all_thumbnails
 
-Plugin for Redmine. Show everey file as either thumnailable image or as a file icon
+Plugin for Redmine. Show every issue attachment as either thumnailable image or as a file icon
 
-![GIF that represents a quick overview](/doc/Overview.gif)
+![PNG that represents a quick overview](/doc/Overview.png)
 
 ### Use case(s)
 
-* View issues similar to graphical file browser like Explorer, Finder, KDE, etc
+* View issue attachments similar to files in a graphical file browser like Explorer, Finder, KDE, etc
 
 ### Install
 
@@ -14,15 +14,19 @@ Plugin for Redmine. Show everey file as either thumnailable image or as a file i
 
 `git clone https://github.com/HugoHasenbein/redmine_all_attachments.git`
 
-2. restart server f.i.  `sudo /etc/init.s/apache2 restart`
+2. restart server f.i.  
+
+`sudo /etc/init.s/apache2 restart`
 
 ### Uninstall
 
-2. go to plugins folder
+1. go to plugins folder
 
 `rm -r redmine_all_attachments`
 
-3. restart server f.i.  `sudo /etc/init.s/apache2 restart`
+2. restart server f.i. 
+
+`sudo /etc/init.s/apache2 restart`
 
 ### Use
 
