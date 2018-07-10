@@ -20,13 +20,13 @@ Plugin for Redmine. Show everey file as either thumnailable image or as a file i
 
 2. go to plugins folder
 
-`rm -r redmine_all_attachments.git`
+`rm -r redmine_all_attachments`
 
 3. restart server f.i.  `sudo /etc/init.s/apache2 restart`
 
 ### Use
 
-* Go to Administration->plugins and choose your favirite icon set. (Source: https://github.com/dmhendricks/file-icon-vectors)
+* Go to Administration->plugins and choose your favorite icon set. (Source: https://github.com/dmhendricks/file-icon-vectors)
 * Go to Administration->Settings->Display and choose "Display attachment thumbnails"
 * Go to issues and view your attachments as file icons or thumbnailable images
 

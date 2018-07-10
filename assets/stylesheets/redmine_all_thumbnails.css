@@ -1,7 +1,14 @@
 div.thumbnails div {
     border: none;
+    background: none;
 }
 
 img.thumbnail {
     border: 1px solid grey;
+    background: white;
+}
+
+.thumbnail.filename {
+    word-wrap: break-word;
+    white-space: normal;
 }
