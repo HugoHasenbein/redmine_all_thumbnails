@@ -42,9 +42,9 @@ module RedmineAllThumbnails
 			   thumbnail_path(attachment),
 			   { :class => "thumbnail",
 			     :srcset => "#{thumbnail_path(attachment, :size => thumbnail_size * 2)} 2x",
-			     :style => "max-width: #{thumbnail_size}px; max-height: #{thumbnail_size}px; height: #{thumbnail_size}px;"
+			     :style => "max-width: #{thumbnail_size*2}px; max-height: #{thumbnail_size}px; height: #{thumbnail_size}px;"
 			    }.merge(options)
-			 ) + tag(:br) + content_tag(:span, attachment.filename, :class => "thumbnail filename" ),
+			 ) + tag(:br) + content_tag(:span, attachment.filename, :style => "width: #{thumbnail_size*2}px;", :class => "thumbnail filename" ),
 			 named_attachment_path(
 			   attachment,
 			   attachment.filename
