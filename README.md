@@ -46,7 +46,7 @@ Plugin for Redmine. Show every issue attachment as either thumnailable image or 
 ### Change-Log* 
 
 **1.0.2** Moved parts of code to enhance compatibility with other plugins
-              Separeted functionality from Redmine Thumbnail PDF
-              Separated functionality from Redmine Preview PDF
-              Added setup choice to either use SVG (fast) or PNG (more compatible) as thumbnails / icons
+- Separeted functionality from Redmine Thumbnail PDF
+- Separated functionality from Redmine Preview PDF
+- Added setup choice to either use SVG (fast) or PNG (more compatible) as thumbnails / icons
 **1.0.1** Running on Redmine 3.4.6
