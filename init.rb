@@ -25,7 +25,7 @@ Redmine::Plugin.register :redmine_all_thumbnails do
   name 'Redmine All Thumbnails'
   author 'Stephan Wenzel'
   description 'This is a plugin for Redmine to show all files as file icons or thumnails'
-  version '1.0.1'
+  version '1.0.2'
   url 'https://github.com/HugoHasenbein/redmine_all_thumbnails'
   author_url 'https://github.com/HugoHasenbein/redmine_all_thumbnails'
 
