@@ -28,5 +28,6 @@ Rails.configuration.to_prepare do
   require 'redmine_all_thumbnails/patches/attachment_patch'
   require 'redmine_all_thumbnails/patches/application_helper_patch'
   require 'redmine_all_thumbnails/patches/attachments_controller_patch'
+  require 'redmine_all_thumbnails/patches/thumbnail_patch'
 
 end

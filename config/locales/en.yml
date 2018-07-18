@@ -23,7 +23,9 @@ en:
 
   label_configure_icon_set_style: "Icon Set"
   label_choose_icon_set_style: "Use these icons"
+  label_use_svg: "Use SVG-format for icons"
   label_icons_from: "Icons: Source: https://github.com/dmhendricks/file-icon-vectors"
+  notice_inkscape: "If icons appear black, then Inkscape should be installed as a delegate for Imagemagick"
   label_scroll_down_to_apply: "Apply at end of this page"
 
   icon_set_1: "Icon Set 1"
