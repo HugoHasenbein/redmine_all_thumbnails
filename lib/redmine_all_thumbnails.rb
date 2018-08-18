@@ -1,6 +1,6 @@
 # encoding: utf-8
 #
-# Redmine plugin to show all files as file icons or thumnails
+# Redmine plugin to show all files as file icons or thumbnails
 #
 # Copyright © 2018 Stephan Wenzel <stephan.wenzel@drwpatent.de>
 #

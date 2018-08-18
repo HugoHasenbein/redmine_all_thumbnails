@@ -10,19 +10,19 @@ Plugin for Redmine. Show every issue attachment as either thumnailable image or 
 
 ### Install
 
-1. download plugin and copy go to Redmine's plugins folder (no need to migrate)
+1. download plugin and copy plugin folder redmine_all_thumbnails go to Redmine's plugins folder (no need to migrate)
 
-2. restart server f.i.
-
-`sudo /etc/init.d/apache2 restart`
+2. restart server f.i.  
 
 ### Uninstall
 
-1. go to plugins folder, delete folder redmine_all_thumbnails 
+1. go to plugins folder, delete plugin folder redmine_all_thumbnails
+
+`rm -r redmine_all_thumbnails`
 
 2. restart server f.i. 
 
-`sudo /etc/init.s/apache2 restart`
+`sudo /etc/init.d/apache2 restart`
 
 ### Use
 
