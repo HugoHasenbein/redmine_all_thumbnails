@@ -29,6 +29,8 @@ module RedmineAllThumbnails
           unloadable 
           
           alias_method :thumbnail_tag, :thumbnail_tag_with_class
+          
+          define_method(:truncate_middle, instance_method(:truncate_middle))
                       
         end #base
       end #self
@@ -44,7 +46,7 @@ module RedmineAllThumbnails
 			     :srcset => "#{thumbnail_path(attachment, :size => thumbnail_size * 2)} 2x",
 			     :style => "max-width: #{thumbnail_size}px; max-height: #{thumbnail_size}px; height: #{thumbnail_size}px; width: auto;"
 			    }.merge(options)
-			 ) + tag(:br) + content_tag(:span, attachment.filename, :style => "width: #{thumbnail_size*2}px;", :class => "thumbnail filename" ),
+			 ) + tag(:br) + content_tag(:span, truncate_middle( attachment.filename, 20 ), :style => "width: #{thumbnail_size*2}px;", :class => "thumbnail filename" ),
 			 named_attachment_path(
 			   attachment,
 			   attachment.filename
@@ -52,6 +54,16 @@ module RedmineAllThumbnails
 			 :title => attachment.filename
 		   ) 
 		 end
+		 
+		 #--------------------------------------------------------------------------------
+         def truncate_middle( anystring, length=150 )
+  
+            return anystring if (length <= 0) || (length > anystring.length) 
+            return ""        if anystring.blank? 
+            return anystring.first(length/2) + "…" + anystring.last(length/2-1)
+     
+         end #def
+
           
       end #module
       

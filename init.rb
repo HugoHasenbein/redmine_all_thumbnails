@@ -18,6 +18,15 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
+#
+# **1.0.3** enhanced compatibility with other preview plugins
+# - added icon for eml-files (email) to icon set 2
+# **1.0.2** Moved parts of code to enhance compatibility with other plugins
+# - separated functionality from Redmine Thumbnail PDF
+# - separated functionality from Redmine Preview PDF
+# - added setup choice to either use SVG (fast) or PNG (more compatible) as thumbnails / icons
+# 
+# **1.0.1** Running on Redmine 3.4.6
 
 require 'redmine'
 
@@ -25,7 +34,7 @@ Redmine::Plugin.register :redmine_all_thumbnails do
   name 'Redmine All Thumbnails'
   author 'Stephan Wenzel'
   description 'This is a plugin for Redmine to show all files as file icons or thumnails'
-  version '1.0.2'
+  version '1.0.3'
   url 'https://github.com/HugoHasenbein/redmine_all_thumbnails'
   author_url 'https://github.com/HugoHasenbein/redmine_all_thumbnails'
 

@@ -29,6 +29,9 @@ module RedmineAllThumbnails
 
           unloadable 	
           
+ 		  #alias_method_chain, :generate, :svg won't work here
+ 		  #look below
+         
 		  # for those, who read and analyze code: I haven't figured it out yet how to unset 
 		  # a constant and how to patch a function, which has been defined as self.function()
 		  # in a base.class_eval block
@@ -39,18 +42,17 @@ module RedmineAllThumbnails
 		  # Generates a thumbnail for the source image to target
 		  def self.generate_with_svg(source, target, size)
 
-            target_without_svg = generate_without_svg(source, target, size)
-            
-            return target_without_svg if target_without_svg.present?
-			
-			return nil unless convert_available?
+			mime_type = ""
+			unless File.open(source) {|f| mime_type = MimeMagic.by_magic(f).try(:type); @REDMINE_ALL_THUMBNAILS_ALLOWED_TYPES.include? mime_type }
+			  return generate_without_svg(source, target, size)
+			end
+
+			unless convert_available?
+			  Rails.logger.info "convert not available"
+			  return nil 
+			end
 
 			unless File.exists?(target)
-
-			  mime_type = ""
-			  unless File.open(source) {|f| mime_type = MimeMagic.by_magic(f).try(:type); @REDMINE_ALL_THUMBNAILS_ALLOWED_TYPES.include? mime_type }
-				return nil
-			  end
 
 			  directory = File.dirname(target)
 			  unless File.exists?(directory)
@@ -67,7 +69,7 @@ module RedmineAllThumbnails
 			target
 		  end #def 
 		
-		  self.singleton_class.send(:alias_method_chain, :generate, :svg)
+ 		  self.singleton_class.send(:alias_method_chain, :generate, :svg)
 		                     
         end #base
       end #self

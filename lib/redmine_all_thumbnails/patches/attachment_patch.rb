@@ -86,7 +86,7 @@ module RedmineAllThumbnails
 							 cab caf cal cd cer class cmd com compile config cpp cr2 crt 
 							 crypt cs csh csproj css csv cue dat db dbf deb dgn dist dll 
 							 dmg dng doc docb docm docx dot dotm dotx dpj ds_store dtd 
-							 dwg dxf eot eps epub exe f4v fax fb2 fla flac flv folder 
+							 dwg dxf eml eot eps epub exe f4v fax fb2 fla flac flv folder 
 							 gadget gem gif gitignore go gpg gz h htm html ibooks ico ics 
 							 idx iff image img indd inf ini iso jar java jpe jpeg jpg js 
 							 json jsp key kf8 ksh less licx lit lock log lua m2v m3u m3u8 
@@ -104,7 +104,8 @@ module RedmineAllThumbnails
 							 xspf xz yaml yml z zip zsh).freeze       
 							 
 		 def thumbnailable_with_icon_set?
-		   thumbnailable_without_icon_set? || true
+		   #thumbnailable_without_icon_set? || true
+		   true # always true
 		 end #def
 
 		 # Returns the full path the attachment thumbnail, or nil
@@ -149,13 +150,13 @@ module RedmineAllThumbnails
 		   end
 		   size = 100 unless size > 0
 		   
-		   target = File.join(self.class.thumbnails_storage_path, "#{id}_#{digest}_#{size}.thumb")
+		   target = File.join(self.class.thumbnails_storage_path, "#{id}_#{digest}_#{size}.png")
 
            if (File.extname(source).downcase =~ /\.svg|\.svgz/) && Setting['plugin_redmine_all_thumbnails']['use_svg'].to_i != 0
              source
            else
 			 begin
-			   Redmine::Thumbnail.generate(source, target, size)
+			   Redmine::Thumbnail.generate_with_svg(source, target, size)
 			 rescue => e
 			   logger.error "An error occured while generating thumbnail for #{disk_filename} to #{target}\nException was: #{e.message}\n #{e.backtrace.join("\n")}" if logger
 			   return nil

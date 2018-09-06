@@ -26,7 +26,7 @@ module RedmineAllThumbnails
         base.extend(ClassMethods)
         base.send(:include, InstanceMethods)
 
-        base.class_eval do
+        base.class_eval do      
           unloadable
           alias_method_chain :thumbnail, :all
           
@@ -34,30 +34,45 @@ module RedmineAllThumbnails
         
       end #self
 
-      module InstanceMethods						
+      module InstanceMethods
 
-		def thumbnail_with_all
-		  if @attachment.thumbnailable? && tbnail = @attachment.thumbnail(:size => params[:size])
-			if stale?(:etag => tbnail)
-			  #
-			  # thumbnail file formats are not necessarily identical to their attachment file formats
-			  # anymore - therefore, we must check individually, which file format the thumbnail has
-			  #
-			  mime_type = ""
-			  File.open(tbnail) {|f| mime_type = MimeMagic.by_magic(f).try(:type) }
-			  thumbnail_filename   = File.basename(@attachment.filename, File.extname(@attachment.filename))
-			  thumbnail_filename  += Rack::Mime::MIME_TYPES.invert[mime_type] 
+        #--------------------------------------------------------------------------------#
+        # thumbnail_with_all will in fact replace thumbnail;  
+        #
+        def thumbnail_with_all
+        
+          sent = false
+          
+          if @attachment.thumbnailable? && tbnail = @attachment.thumbnail(:size => params[:size])
 
-			  send_file tbnail,
-				:filename => filename_for_content_disposition( thumbnail_filename ),
-				:type => mime_type,
-				:disposition => 'inline'
-			end
-		  else
-			# No thumbnail for the attachment or thumbnail could not be created
-			head 404
-		  end
-		end
+            if stale?(:etag => tbnail)
+              #
+              # thumbnail file formats are not necessarily identical to their attachment file formats
+              # anymore - therefore, we must check individually, which file format the thumbnail has
+              #
+
+              mime_type = ""
+              File.open(tbnail) {|f| mime_type = MimeMagic.by_magic(f).try(:type) }
+              thumbnail_filename   = File.basename(@attachment.filename, File.extname(@attachment.filename))
+              thumbnail_filename  += Rack::Mime::MIME_TYPES.invert[mime_type].to_s # to_s catches nil
+
+              send_file tbnail,
+                :filename => filename_for_content_disposition( thumbnail_filename ),
+                :type => mime_type,
+                :disposition => 'inline'    
+                        
+              sent = true
+            end
+          else
+
+            # No thumbnail for the attachment could be created
+            head 404            
+            sent = true
+          end
+          
+          thumbnail_without_all unless sent
+
+        end #def
 
       end #module      
 
