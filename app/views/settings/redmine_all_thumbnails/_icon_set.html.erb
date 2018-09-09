@@ -1,4 +1,4 @@
-<fieldset class="box tabular settings"><legend><%= l(:label_configure_icon_set_style) %></legend>
+<fieldset class="box settings"><legend><%= l(:label_configure_icon_set_style) %></legend>
   <p>
 	<label><%= l(:label_choose_icon_set_style) %></label>
 	<%= radio_button_tag 'settings[use_icon_set]', tab[:name], Setting['plugin_redmine_all_thumbnails']['use_icon_set'] == tab[:name] %>
@@ -7,18 +7,29 @@
 	<label><%= l(:label_use_svg) %></label>
 	<%= check_box_tag 'settings[use_svg]', 1, Setting['plugin_redmine_all_thumbnails']['use_svg'].to_i != 0, :class => "svgchooser", :onclick => "$('input.svgchooser').prop('checked', $(this).is(':checked'));" %>
   </p>
-  <p class="contextual">
-    <%= l(:label_icons_from) %>
+  <p>
+	<label><%= l(:label_image_icons) %></label>
+	<%= check_box_tag 'settings[image_icons]', 1, Setting['plugin_redmine_all_thumbnails']['image_icons'].to_i != 0, :class => "imgchooser", :onclick => "$('input.imgchooser').prop('checked', $(this).is(':checked'));" %>
   </p>
-  <p class="contextual">
-    <%= l(:notice_inkscape) %>
+  <p>
+	<label><%= l(:label_pdf_icons) %></label>
+	<%= check_box_tag 'settings[pdf_icons]', 1, Setting['plugin_redmine_all_thumbnails']['pdf_icons'].to_i != 0, :class => "pdfchooser", :onclick => "$('input.pdfchooser').prop('checked', $(this).is(':checked'));" %>
   </p>
   <p>
     <label><%= l(:label_scroll_down_to_apply) %></label>
   </p>
 </fieldset>
 
+  <div>
+    <%= l(:label_icons_from) %>
+    <br>
+    <%= l(:notice_inkscape) %>
+  </div>
+  
+
 <div class="thumbnails">
+
+
   <%- 
 	tab[:icon_set].each do |icon|
 	 

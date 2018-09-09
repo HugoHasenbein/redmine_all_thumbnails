@@ -44,7 +44,7 @@ module RedmineAllThumbnails
 			   thumbnail_path(attachment),
 			   { :class => "thumbnail",
 			     :srcset => "#{thumbnail_path(attachment, :size => thumbnail_size * 2)} 2x",
-			     :style => "max-width: #{thumbnail_size}px; max-height: #{thumbnail_size}px; height: #{thumbnail_size}px; width: auto;"
+			     :style => "height: #{thumbnail_size}px; width: auto;"
 			    }.merge(options)
 			 ) + tag(:br) + content_tag(:span, truncate_middle( attachment.filename, 20 ), :style => "width: #{thumbnail_size*2}px;", :class => "thumbnail filename" ),
 			 named_attachment_path(

@@ -21,6 +21,9 @@
 
 Rails.configuration.to_prepare do
 
+  # load file extensions
+  require 'redmine_all_thumbnails/file_extensions/file_extensions'
+
   # link hooks
   require 'redmine_all_thumbnails/hooks/layout_base_hook'
 

@@ -41,9 +41,14 @@ Plugin for Redmine. Show every issue attachment as either thumnailable image or 
 
 ### Change-Log* 
 
+**1.0.4** enhanced visual appearance of config dialog 
+- cleaned up and simplified code
+- added configuration choice to unselect image and pdf icons
+
 **1.0.3** enhanced compatibility with other preview plugins
 - added icon for eml-files (email) to icon set 2
 - addd feature to truncate long attachment filenames 
+
 **1.0.2** Moved parts of code to enhance compatibility with other plugins
 - separated functionality from Redmine Thumbnail PDF
 - separated functionality from Redmine Preview PDF

@@ -19,6 +19,9 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 #
+# **1.0.4** enhanced visual appearance of config dialog 
+# - cleaned up and simplified code
+# - added configuration choice to unselect images and pdf for icons
 # **1.0.3** enhanced compatibility with other preview plugins
 # - added icon for eml-files (email) to icon set 2
 # **1.0.2** Moved parts of code to enhance compatibility with other plugins
@@ -34,14 +37,23 @@ Redmine::Plugin.register :redmine_all_thumbnails do
   name 'Redmine All Thumbnails'
   author 'Stephan Wenzel'
   description 'This is a plugin for Redmine to show all files as file icons or thumnails'
-  version '1.0.3'
+  version '1.0.4'
   url 'https://github.com/HugoHasenbein/redmine_all_thumbnails'
   author_url 'https://github.com/HugoHasenbein/redmine_all_thumbnails'
 
-  settings :default => {'use_icon_set' 	=> 'Icons-Square-O'
+  settings :default => {'use_icon_set' 	=> 'Icons-Square-O',
+                        'use_svg'       => '1',
+                        'image_icons'   => '1',
+                        'pdf_icons'     => '1'
                         },
            :partial => 'settings/redmine_all_thumbnails/plugin_settings'
 
 end
 
+REDMINE_ALL_THUMBNAILS_CONVERT_BIN = 
+  ( Redmine::Configuration['imagemagick_convert_command'] || 
+    'convert'
+  ).freeze
+
 require "redmine_all_thumbnails"
+

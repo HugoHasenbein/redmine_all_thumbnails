@@ -24,6 +24,8 @@ de:
   label_configure_icon_set_style: "Icon Set"
   label_choose_icon_set_style: "Diese Icons nutzen"
   label_use_svg: "SVG-Format als Icons nutzen"
+  label_image_icons: "Zeige Icons für Bild-Dateien"
+  label_pdf_icons: "Zeige Icons für PDF-Dateien"
   label_icons_from: "Icons: Quelle: https://github.com/dmhendricks/file-icon-vectors"
   notice_inkscape: "Wenn Icons schwarz erscheinen, dann sollte Inkscape als Delegate für Imagemagick installiert werden"
   label_scroll_down_to_apply: "Am Ende der Seite sichern"
