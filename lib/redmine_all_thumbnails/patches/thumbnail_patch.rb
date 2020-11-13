@@ -28,28 +28,28 @@ module RedmineAllThumbnails
       def self.included(base)
         base.send(:include, InstanceMethods)
         base.class_eval do
-
-          unloadable    
-
+        
+          unloadable
+          
           # Generates a thumbnail for the source image to target
-          def self.generate_with_svg(source, target, size)
-
+          def self.generate_with_svg(source, target, size, is_pdf=false)
+          
             mime_type = ""
             File.open(source) {|f| mime_type = MimeMagic.by_magic(f).try(:type) }
             extn = MimeMagic::EXTENSIONS.invert[mime_type]
-
+            
             if extn == "pdf"
               if (Setting['plugin_redmine_all_thumbnails']['pdf_icons'].to_i == 0)
-                return generate_without_svg(source, target, size) 
+                return generate_without_svg(source, target, size, is_pdf) 
               end
             end 
-
+            
             if extn =~ /bmp|gif|jpg|jpe|jpeg|png/
               if (Setting['plugin_redmine_all_thumbnails']['image_icons'].to_i == 0)
-                return generate_without_svg(source, target, size) 
+                return generate_without_svg(source, target, size, is_pdf) 
               end
             end 
-
+            
             case Setting['plugin_redmine_all_thumbnails']['use_icon_set']
               when "Icons-Vivid"
                 icon_set = ICONS_VIVID
@@ -71,7 +71,7 @@ module RedmineAllThumbnails
               # No icon for the attachment was found
               thumb_filepath = File.join(Rails.root, "public", "plugin_assets", "redmine_all_thumbnails", "images", "icons", icon_dir, "blank.svg" )
             end #if
-
+            
             if Setting['plugin_redmine_all_thumbnails']['use_svg'].to_i != 0
               return thumb_filepath
             end #if
@@ -80,15 +80,16 @@ module RedmineAllThumbnails
               Rails.logger.info "convert not available"
               return nil 
             end
-
+            
             unless File.exists?(target)
               directory = File.dirname(target)
               unless File.exists?(directory)
                 FileUtils.mkdir_p directory
               end
               size_option = "#{size}x#{size}>"
+              target += ".png"
               cmd = "#{shell_quote REDMINE_ALL_THUMBNAILS_CONVERT_BIN} #{shell_quote thumb_filepath} -thumbnail #{shell_quote size_option} #{shell_quote target}"
-
+              
               unless system(cmd)
                 logger.error("Creating thumbnail failed (#{$?}):\nCommand: #{cmd}")
                 return nil
@@ -98,12 +99,17 @@ module RedmineAllThumbnails
             target
           end #def 
         
-          self.singleton_class.send(:alias_method_chain, :generate, :svg)
-                             
+          if Rails::VERSION::MAJOR >= 5
+            self.singleton_class.send(:alias_method, :generate_without_svg, :generate)
+            self.singleton_class.send(:alias_method, :generate, :generate_with_svg   )
+          else
+            self.singleton_class.send(:alias_method_chain, :generate, :svg)
+          end
+          
         end #base
       end #self
-
-      module InstanceMethods     
+      
+      module InstanceMethods
       end #module
             
     end #module

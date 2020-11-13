@@ -19,66 +19,66 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
+require 'mimemagic'
+
 module RedmineAllThumbnails
   module Patches
     module AttachmentsControllerPatch
       def self.included(base)
         base.extend(ClassMethods)
         base.send(:include, InstanceMethods)
-
-        base.class_eval do      
+        base.class_eval do
           unloadable
-          alias_method_chain :thumbnail, :all
+          
+          if Rails::VERSION::MAJOR >= 5
+            alias_method :thumbnail_without_all, :thumbnail
+            alias_method :thumbnail, :thumbnail_with_all
+          else
+            alias_method_chain :thumbnail, :all
+          end
           
         end #base
         
       end #self
-
+      
       module InstanceMethods
-
+      
         #--------------------------------------------------------------------------------#
         # thumbnail_with_all will in fact replace thumbnail;  
         #
         def thumbnail_with_all
-        
-          sent = false
           
           if @attachment.thumbnailable? && tbnail = @attachment.thumbnail(:size => params[:size])
-
-            if stale?(:etag => tbnail)
+          
+            if stale?(:etag => tbnail, :template => false)
+            
               #
               # thumbnail file formats are not necessarily identical to their attachment file formats
               # anymore - therefore, we must check individually, which file format the thumbnail has
               #
-
+              
               mime_type = ""
               File.open(tbnail) {|f| mime_type = MimeMagic.by_magic(f).try(:type) }
               thumbnail_filename   = File.basename(@attachment.filename, File.extname(@attachment.filename))
-              thumbnail_filename  += Rack::Mime::MIME_TYPES.invert[mime_type].to_s # to_s catches nil
-
+              thumbnail_filename  += ".#{MimeMagic::EXTENSIONS.invert[mime_type]}"
+              
               send_file tbnail,
                 :filename => filename_for_content_disposition( thumbnail_filename ),
                 :type => mime_type,
                 :disposition => 'inline'    
-                        
-              sent = true
             end
           else
-
             # No thumbnail for the attachment could be created
-            head 404            
-            sent = true
+            head 404
           end
           
-          thumbnail_without_all unless sent
-
         end #def
-
-      end #module      
-
+        
+      end #module
+      
       module ClassMethods
       end #def 
-
+      
     end #module
   end #module
 end #module

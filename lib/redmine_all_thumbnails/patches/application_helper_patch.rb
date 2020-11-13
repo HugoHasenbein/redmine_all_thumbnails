@@ -25,7 +25,7 @@ module RedmineAllThumbnails
       def self.included(base)
         base.send(:include, InstanceMethods)
         base.class_eval do
-
+        
           unloadable 
           
           alias_method :thumbnail_tag, :thumbnail_tag_with_class
@@ -34,37 +34,34 @@ module RedmineAllThumbnails
                       
         end #base
       end #self
-
+      
       module InstanceMethods  
         
-		 def thumbnail_tag_with_class(attachment, options={})
-		   thumbnail_size = Setting.thumbnails_size.to_i
-		   link_to(
-			 image_tag(
-			   thumbnail_path(attachment),
-			   { :class => "thumbnail",
-			     :srcset => "#{thumbnail_path(attachment, :size => thumbnail_size * 2)} 2x",
-			     :style => "height: #{thumbnail_size}px; width: auto;"
-			    }.merge(options)
-			 ) + tag(:br) + content_tag(:span, truncate_middle( attachment.filename, 20 ), :style => "width: #{thumbnail_size*2}px;", :class => "thumbnail filename" ),
-			 named_attachment_path(
-			   attachment,
-			   attachment.filename
-			 ),
-			 :title => attachment.filename
-		   ) 
-		 end
-		 
-		 #--------------------------------------------------------------------------------
-         def truncate_middle( anystring, length=150 )
-  
-            return anystring if (length <= 0) || (length > anystring.length) 
-            return ""        if anystring.blank? 
-            return anystring.first(length/2) + "…" + anystring.last(length/2-1)
-     
-         end #def
-
-          
+        def thumbnail_tag_with_class(attachment, options={})
+          thumbnail_size = Setting.thumbnails_size.to_i
+          link_to(
+            image_tag(
+              thumbnail_path(attachment),
+              { :class => "thumbnail",
+                :srcset => "#{thumbnail_path(attachment, :size => thumbnail_size * 2)} 2x",
+                :style => "height: #{thumbnail_size}px; width: auto;"
+               }.merge(options)
+            ) + tag(:br) + content_tag(:span, truncate_middle( attachment.filename, 20 ), :style => "width: #{thumbnail_size*2}px;", :class => "thumbnail filename" ),
+            named_attachment_path(
+              attachment,
+              attachment.filename
+            ),
+            :title => attachment.filename
+          ) 
+        end
+        
+        #--------------------------------------------------------------------------------
+        def truncate_middle( anystring, length=150 )
+          return anystring if (length <= 0) || (length > anystring.length) 
+          return ""        if anystring.blank? 
+          return anystring.first(length/2) + "…" + anystring.last(length/2-1)
+        end #def
+        
       end #module
       
     end #module

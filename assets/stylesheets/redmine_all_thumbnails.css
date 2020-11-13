@@ -1,6 +1,7 @@
 div.thumbnails div {
     border: none;
     background: none;
+    text-align: center;
 }
 
 img.thumbnail {

@@ -27,29 +27,25 @@ module RedmineAllThumbnails
         base.class_eval do
           unloadable
           
-          alias_method_chain :thumbnailable?, :icon_set         
+          if Rails::VERSION::MAJOR >= 5
+            alias_method :thumbnailable_without_icon_set?, :thumbnailable?
+            alias_method :thumbnailable?, :thumbnailable_with_icon_set?
+          else
+            alias_method_chain :thumbnailable?, :icon_set
+          end
           
         end #base
       end #def
-
-      module InstanceMethods    
-							 
+      
+      module InstanceMethods
+      
         def thumbnailable_with_icon_set?
-        
-         others = thumbnailable_without_icon_set?
-        
-         if image?
-           return others || (Setting['plugin_redmine_all_thumbnails']['image_icons'].to_i != 0)
-         end 
-         
-         if is_pdf?
-           return others || (Setting['plugin_redmine_all_thumbnails']['pdf_icons'].to_i != 0)
-         end 
-         
-         return true # rest is always imageable
-         
+          return true if thumbnailable_without_icon_set?
+          return (Setting['plugin_redmine_all_thumbnails']['image_icons'].to_i != 0) if image?
+          return (Setting['plugin_redmine_all_thumbnails']['pdf_icons'  ].to_i != 0) if is_pdf?
+          return true # rest is always imageable
         end #def
-		 
+         
       end #module 
     end #module 
   end #module 
