@@ -1,6 +1,6 @@
 # redmine_all_thumbnails
 
-Plugin for Redmine. Show every issue attachment as either thumnailable image or as a file icon
+Plugin for Redmine. Show every issue attachment as either thumbnailable image or as a file icon
 
 ![PNG that represents a quick overview](/doc/Overview.png)
 
