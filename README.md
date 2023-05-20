@@ -41,6 +41,7 @@ Plugin for Redmine. Show every issue attachment as either thumbnailable image or
 
 ### Change-Log* 
 
+**1.0.6** supports redmine 5+
 **1.0.5** supports redmine 4+
 **1.0.4** enhanced visual appearance of config dialog 
 - cleaned up and simplified code

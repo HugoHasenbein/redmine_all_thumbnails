@@ -19,9 +19,6 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
-require 'mimemagic'
-require 'mimemagic/overlay'
-
 module RedmineAllThumbnails
   module Patches 
     module ThumbnailPatch
@@ -48,20 +45,20 @@ module RedmineAllThumbnails
               if (Setting['plugin_redmine_all_thumbnails']['image_icons'].to_i == 0)
                 return generate_without_svg(source, target, size, is_pdf) 
               end
-            end 
+            end
             
             case Setting['plugin_redmine_all_thumbnails']['use_icon_set']
               when "Icons-Vivid"
-                icon_set = ICONS_VIVID
+                icon_set = RedmineAllThumbnails::FileExtensions::FileExtensions::ICONS_VIVID
                 icon_dir = "vivid"
               when "Icons-Square-O"
-                icon_set = ICONS_SQUARE_O
+                icon_set = RedmineAllThumbnails::FileExtensions::FileExtensions::ICONS_SQUARE_O
                 icon_dir = "square-o"
               when "Icons-Classic"
-                icon_set = ICONS_CLASSIC
+                icon_set = RedmineAllThumbnails::FileExtensions::FileExtensions::ICONS_CLASSIC
                 icon_dir = "classic"
               else
-                icon_set = ICONS_CLASSIC
+                icon_set = RedmineAllThumbnails::FileExtensions::FileExtensions::ICONS_CLASSIC
                 icon_dir = "classic"
             end 
             
