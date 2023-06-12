@@ -19,18 +19,17 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
-Rails.configuration.to_prepare do
-
-  # load file extensions
-  require 'redmine_all_thumbnails/file_extensions/file_extensions'
-
-  # link hooks
-  require 'redmine_all_thumbnails/hooks/layout_base_hook'
-
-  # link patches
-  require 'redmine_all_thumbnails/patches/attachment_patch'
-  require 'redmine_all_thumbnails/patches/application_helper_patch'
-  require 'redmine_all_thumbnails/patches/attachments_controller_patch'
-  require 'redmine_all_thumbnails/patches/thumbnail_patch'
-
+module RedmineAllThumbnails
 end
+
+# load file extensions
+require_relative 'redmine_all_thumbnails/file_extensions/file_extensions'
+
+# link hooks
+require_relative 'redmine_all_thumbnails/hooks/layout_base_hook'
+
+# link patches
+require_relative 'redmine_all_thumbnails/patches/attachment_patch'
+require_relative 'redmine_all_thumbnails/patches/application_helper_patch'
+require_relative 'redmine_all_thumbnails/patches/attachments_controller_patch'
+require_relative 'redmine_all_thumbnails/patches/thumbnail_patch'

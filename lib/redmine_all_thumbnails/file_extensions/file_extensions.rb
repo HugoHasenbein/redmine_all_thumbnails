@@ -1,5 +1,7 @@
-
-ICONS_CLASSIC = %w(3g2 3ga 3gp 7z aa aac accdb accdt adn ai aif aifc aiff ait 
+module RedmineAllThumbnails
+  module FileExtensions
+    module FileExtensions
+      ICONS_CLASSIC = %w(3g2 3ga 3gp 7z aa aac accdb accdt adn ai aif aifc aiff ait 
                    amr ani apk app asax ascx asf ash ashx asmx asp aspx asx au 
                    aup avi axd aze bash bat bin blank bmp bpg browser bz2 c cab 
                    caf cal cd cer class cmd com compile config cpp cr2 crt 
@@ -22,7 +24,7 @@ ICONS_CLASSIC = %w(3g2 3ga 3gp 7z aa aac accdb accdt adn ai aif aifc aiff ait
                    xlm xls xlsm xlsx xlt xltm xltx xml xpi xps xrb xsd xsl xspf 
                    xz yml z zip zsh).freeze
 
-ICONS_SQUARE_O = %w(3g2 3ga 3gp 7z aa aac accdb accdt adn ai aif aifc aiff ait 
+      ICONS_SQUARE_O = %w(3g2 3ga 3gp 7z aa aac accdb accdt adn ai aif aifc aiff ait 
                    amr ani apk app asax ascx asf ash ashx asmx asp aspx asx au 
                    aup avi axd aze bak bash bat bin blank bmp bpg browser bz2 
                    c cab caf cal cd cer cmd com compile cpp cr2 crt cs csh 
@@ -41,8 +43,8 @@ ICONS_SQUARE_O = %w(3g2 3ga 3gp 7z aa aac accdb accdt adn ai aif aifc aiff ait
                    webm wma wmf wmv woff woff2 wsf xaml xcf xlm xls xlsm xlt 
                    xltm xltx xml xps xsd xsl xspf xz z zip zsh).freeze
 
-# added eml 
-ICONS_VIVID =    %w(3g2 3ga 3gp 7z aa aac accdb accdt adn ai aif aifc aiff ait 
+      # added eml 
+      ICONS_VIVID = %w(3g2 3ga 3gp 7z aa aac accdb accdt adn ai aif aifc aiff ait 
                    amr ani apk app asax ascx asf ash ashx asmx asp aspx asx au 
                    aup avi axd aze bak bash bat bin blank bmp bpg browser bz2 c
                    cab caf cal cd cer class cmd com compile config cpp cr2 crt 
@@ -64,3 +66,8 @@ ICONS_VIVID =    %w(3g2 3ga 3gp 7z aa aac accdb accdt adn ai aif aifc aiff ait
                    wav wbk webinfo webm webp wma wmf wmv woff woff2 wsf xaml 
                    xcf xlm xls xlsm xlsx xlt xltm xltx xml xpi xps xrb xsd xsl 
                    xspf xz yaml yml z zip zsh).freeze     
+    end
+  end
+end
+
+
